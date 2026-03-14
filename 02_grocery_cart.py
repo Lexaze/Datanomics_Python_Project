@@ -32,6 +32,11 @@ while True:
     if user_item in Groceries_menu:
         try:
             quantity = int(input("Please enter quantity: "))
+            if quantity <= 0:
+                print(
+                    f"{"\033[31m"} Quantity must be a positive number.{"\033[0m"}")
+                continue
+
             # Add to cart or update quantity if already exists
             if user_item in cart:
                 # previous qua=previous qua + quantity
