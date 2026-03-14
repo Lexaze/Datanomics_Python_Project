@@ -73,42 +73,50 @@ def view_tasks():
 
 
 # -------- COMPLETE TASK --------
+
+
 def complete_task():
+    view_tasks()
+    if tasks:   # check if the tasks are not empty so that not to proceed the try except part
 
-    try:
-        idx = int(input("Enter task number to complete: ")) - 1
+        try:
+            idx = int(input("Enter task number to complete: ")) - 1
 
-        if not tasks[idx]["done"]:
-            tasks[idx]["done"] = True
-            print(GREEN + "Task marked as completed." + RESET)
-        else:
-            print(YELLOW + "Task already completed." + RESET)
+            if not tasks[idx]["done"]:
+                tasks[idx]["done"] = True
+                print(GREEN + "Task marked as completed." + RESET)
+            else:
+                print(YELLOW + "Task already completed." + RESET)
 
-    except (ValueError, IndexError):
-        print(RED + "Invalid task number." + RESET)
+        except (ValueError, IndexError):
+            print(RED + "Invalid task number." + RESET)
 
 
 # -------- DELETE TASK --------
 def delete_task():
+    view_tasks()
 
-    try:
-        idx = int(input("Enter task number to delete: ")) - 1
+    if tasks:  # same thing with complete_task(), to check tasks are not empty
 
-        removed = tasks.pop(idx)
+        try:
+            idx = int(input("Enter task number to delete: ")) - 1
 
-        print(RED + f"Deleted task: {removed['name']}" + RESET)
+            removed = tasks.pop(idx)
 
-    except (ValueError, IndexError):
-        print(RED + "Invalid task number." + RESET)
+            print(RED + f"Deleted task: {removed['name']}" + RESET)
+
+        except (ValueError, IndexError):
+            print(RED + "Invalid task number." + RESET)
 
 
 # -------- MAIN LOOP --------
 while True:
 
-    print("\n" + CYAN + "Choose Action" + RESET)
-    action = input(
-        "(Add / View / Complete / Delete / Exit): "
-    ).lower()
+    print("\n" + CYAN + " Actions" + RESET)
+    print(
+        "\t.Add \n\t.View \n\t.Complete \n\t.Delete \n\t.Exit "
+    )
+    action = input("\n" + CYAN + "Choose Action: " + RESET)
 
     if action == "add":
         add_task()

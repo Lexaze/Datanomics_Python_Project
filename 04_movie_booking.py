@@ -16,7 +16,7 @@ def show_movies():
     print("\n====== MOVIES AVAILABLE ======")
 
     movie_list = list(movies.items())
-
+    print(movie_list)
     for i, (name, info) in enumerate(movie_list, start=1):
         print(
             f"{i}. {name:<15} | Time: {info['time']} | Price: ${info['price']}")
